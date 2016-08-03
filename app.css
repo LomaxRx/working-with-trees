@@ -1,0 +1,119 @@
+body,html{
+  margin: 0;
+  padding: 0;
+  color: #666;
+  background: #f1f1f1;
+  font-family: Helvetica, sans-serif;
+}
+
+main:after{
+  content: ' ';
+  display: block;
+  clear: both;
+}
+
+.container{
+  padding: 10px;
+}
+
+h1,h2,h3{
+  text-transform: lowercase;
+  font-weight: 100;
+  margin-top: 5px;
+  box-shadow: 0 -1px 0 rgba(0,0,0,0.1);
+  padding: 5px;
+  margin: 15px 0 0 0;
+}
+
+h1{
+  font-size: 1.6em;
+}
+
+#sidebar{
+  float: left;
+  width: 33.333%;
+  height: 100vh;
+  color: #FEFEFE;
+  background: #66ABAA;
+  box-shadow: inset -1px 0 0 rgba(0,0,0,0.15);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+#graphic{
+  float: left;
+  overflow: hidden;
+  width: 66.666%;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#tree{
+  margin-top: 50px;
+}
+
+#sidebar a{
+  display: block;
+  font-weight: 100;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 3px;
+  box-shadow: 0 3px 0 rgba(255,255,255,0.15);
+}
+
+#sidebar a:hover,
+#sidebar a.on{
+  background: rgba(0,0,0,0.1);
+}
+
+.code{
+  margin: 10px 0;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 0 1px rgba(0,0,0,0.25);
+  display: none;
+}
+
+.code.on{
+  display: block;
+}
+
+/**
+ SVG STYLE
+**/
+text {
+  font-family: Helvetica, sans-serif;
+  font-size: 0.75em;
+  fill: #777;
+}
+.node circle,
+.node text{
+  fill: #84BBA4;
+}
+.node.visited circle,
+.node.visited text{
+  fill: #EF434D;
+  fill-opacity: 0.75;
+  stroke: #EF434D;
+}
+
+
+.scanner{
+  fill: none;
+  stroke: #EF434D;
+  stroke-opacity: 0.75;
+  stroke-width: 5px;
+}
+path{
+  stroke: #85BD91;
+  fill: none;
+}
+
+.hide{
+  display: none !important;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "working-with-trees",
+  "version": "1.0.0",
+  "description": "for the uninitiated: tree algorithms",
+  "main": "app.js",
+  "scripts": {
+    "start": "rollup -c rollup.js | http-server"
+  },
+  "keywords": [
+    "algorithms",
+    "binary trees",
+    "data structures",
+    "visualization"
+  ],
+  "author": "Andrew Lomax",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^4.1.1"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "rollup": "^0.34.1",
+    "rollup-watch": "^2.5.0"
+  }
+}

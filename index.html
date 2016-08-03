@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/atelier-forest-light.min.css"/>
+    <link rel="stylesheet" type="text/css" href="app.css">
+	</head>
+	<body>
+    <main>
+      <div id="sidebar">
+        <div class="container">
+          <h3>Traversal</h3>
+          <span class="general">
+            <a class="example-link" onclick="traverse('depthFirst','pre');selectExample.call(this,'depthFirst');">Depth First: Pre-order</a>
+            <a class="example-link" onclick="traverse('depthFirst','post');selectExample.call(this,'depthFirst');">Depth First: Post-order</a>
+            <a class="example-link" onclick="traverse('breadthFirst');selectExample.call(this,'breadthFirst');">Breadth First</a>
+          </span>
+          <span class="binary hide">
+            <a class="example-link" onclick="traverseBT('preOrder');selectExample.call(this,'order');">Pre-order</a>
+            <a class="example-link" onclick="traverseBT('inOrder');selectExample.call(this,'order');">In-order</a>
+            <a class="example-link" onclick="traverseBT('postOrder');selectExample.call(this,'order');">Post-order</a>
+          </span>
+          <h3>Binary Trees</h3>
+          <a class="example-link" onclick="insert();selectExample.call(this,'insert');">Insert</a>
+          <!-- <a class="example-link" onclick="avlBalance();selectExample.call(this,'avl-balance');">Balance: AVL tree</a> -->
+        </div>
+      </div>
+      <div id="graphic">
+        <div class="container">
+          <h1>Working with Trees</h1>
+          <div id="tree"></div>
+          <div class="code breadthFirst">
+            A breadth first is a first-come first-serve traversal (known as first-in-first-out). We create a queue of nodes, adding each node's children,
+            then retrieve the first node from the queue.
+<pre><code class="javascript">
+function breadthFirst(){
+  var queue = [];
+
+  var node = this.root;
+
+  while(node){
+    if(node.children)
+      for( var i=0; i&lt;node.children.length;i++)
+        queue.push(node.children[i]);
+    // get the first node in queue
+    node = queue.shift();
+    // Do something with node
+  }
+}
+</code></pre>
+          </div>
+          <div class="code depthFirst">
+            A depth first is last-in-first-out traversal. This is a recursive implementation that adds each node's children to a stack
+            and does something with each node either before each node is added to stack (pre-order) or after stack each node is added to stack (post-order).
+<pre><code class="javascript">
+function depthFirst(){
+  (function visit(node){
+    // PRE-ORDER: do something with node here
+    if(node.children)
+      for( var i = 0; i&lt;node.children.length;i++)
+        visit(node.children[i]);
+
+    // POST-ORDER: do something with node here
+  })(this.root);
+}
+</code></pre>
+          </div>
+          <div class="code insert">
+            Taking the nodes from the generic tree, insert each.
+<pre><code class="javascript">
+function insert(value) {
+  var n = new Node(value);
+  if (this.root === null){
+      this.root = n;
+  } else {
+    var current = this.root;
+    while (true){
+      if (value < current.value) {
+        if(current.left().value === null){
+            current.left(n);
+            break;
+        } else {
+          current = current.left();
+        }
+      } else if( value > current.value ){
+        if(current.right().value === null){
+            current.right(n);
+            break;
+        } else {
+          current = current.right();
+        }
+      } else {
+        break;
+      }
+    }
+  }
+}
+</code></pre>
+Since the general tree is nearly sorted, this results in a really unbalanced binary tree. So let's balance it!
+          </div>
+          <div class="code order">
+
+<pre><code class="javascript">
+  function order(callback){
+    (function traverse(node){
+      if(node.value){
+          // PRE ORDER: do something with node here
+          traverse(node.left());
+          // IN ORDER: do something with node here
+          traverse(node.right());
+          // POST ORDER: do something with node here
+      }
+    })(this.root);
+  }
+</code></pre>
+
+          </div>
+          <div class="code avl-balance">
+          AVL trees are are balanced binary search trees where, for each node, the height of the left child differs from the height of the right child by no more than 1.
+<pre><code class="javascript">
+</code></pre>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.1.1/d3.js"></script>
+    <script src="app.js"></script>
+
+  </body>
+</html>
